@@ -1,9 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Average from './components/Average'
-import AveragePositive from './components/AveragePositive'
+import Statistics from './components/Statistics'
 
 function App() {
 
@@ -16,7 +13,6 @@ function App() {
 
   const handleGood = () => {
     setGood(good + 1)
-
     setAll(all + 1)
   }
   const handleNeutral = () => {
@@ -25,7 +21,6 @@ function App() {
     setAll(all + 1)
   }
   const handleBad = () => {
-
     setBad(bad + 1)
     setAll(all + 1)
   }
@@ -37,12 +32,12 @@ function App() {
       <button onClick={handleNeutral}>neutral</button>
       <button onClick={handleBad}>bad</button>
       <h2>statistics</h2>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {all}</p>
-      <Average positive={good} negative={bad} total={all}></Average>
-      <AveragePositive positive={good} total={all}></AveragePositive>
+      <Statistics
+        positive={good}
+        neutral={neutral}
+        negative={bad}
+        total={all}>
+      </Statistics>
     </div>
 
   )
