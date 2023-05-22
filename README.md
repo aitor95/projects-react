@@ -1,4 +1,4 @@
-<div align="center"
+<div align="center">
 # Aprendiendo React desde Cero ⚛️
 En este repositorio iré subiendo los proyectos que voy realizando a medida que voy aprendiendo React, de la mano de [Bootcamp FullStack Gratuito](https://fullstackopen.com/en/) 
 </div>
