@@ -3,8 +3,13 @@ import Header from './Header'
 import Part from './Part'
 
 const Course = ({ course }) => {
+
+    const total = course.parts.reduce(
+        (acc, part) => acc + part.exercises, 0
+    )
+
     return (
-        <Fragment>
+        <>
             <Header name={course.name}></Header>
             {
                 course.parts.map(el =>
@@ -14,7 +19,8 @@ const Course = ({ course }) => {
                         exercises={el.exercises}
                     />)
             }
-        </Fragment>
+            <strong>total of exercices: {total}</strong>
+        </>
     )
 };
 
