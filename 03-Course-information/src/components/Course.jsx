@@ -4,15 +4,17 @@ import Part from './Part'
 
 const Course = ({ course }) => {
 
-    const total = course.parts.reduce(
-        (acc, part) => acc + part.exercises, 0
+    const chapter = course.parts
+    const total = chapter.reduce(
+        (acc, chapter) => acc + chapter.exercises, 0
     )
 
     return (
         <>
-            <Header name={course.name}></Header>
+            {<Header name={course.name}></Header>}
+
             {
-                course.parts.map(el =>
+                chapter.map(el =>
                     <Part
                         key={el.id}
                         name={el.name}
