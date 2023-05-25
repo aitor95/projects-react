@@ -1,20 +1,30 @@
 import { useState } from 'react'
 
 const App = () => {
+
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas' }
   ])
+
   const [newName, setNewName] = useState('')
 
   const handleChange = (event) => {
     setNewName(event.target.value)
   }
+
   const addNote = () => {
-    const noteToAdd = {
-      name: newName
+    const existsName = persons.find(person => person.name === newName);
+
+    if (existsName) {
+      alert(`${newName} is already added to the PhoneBook`)
+    } else {
+
+      const noteToAdd = {
+        name: newName
+      }
+      setPersons([...persons, noteToAdd])
+      setNewName("")
     }
-    setPersons([...persons, noteToAdd])
-    setNewName("")
   }
 
   return (
@@ -30,7 +40,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map(person =>
-        <p>{person.name}</p>)}
+        <p key={person.name}>{person.name}</p>)}
     </div>
   )
 }
