@@ -14,6 +14,7 @@ const App = () => {
 
   const [newName, setNewName] = useState('')
   const [newPhone, setnewPhone] = useState('')
+  const [filteredPersons, setFilteredPersons] = useState(persons)
 
   const handleChange = (event) => {
     setNewName(event.target.value)
@@ -25,7 +26,7 @@ const App = () => {
   const handleSearch = (event) => {
     const personToSearch = event.target.value
     const personsFiltered = persons.filter(person => person.name.toLowerCase().includes(personToSearch))
-    setPersons(personsFiltered)
+    setFilteredPersons(personsFiltered)
   }
 
   const addNote = () => {
@@ -55,7 +56,7 @@ const App = () => {
         onSubmit={addNote}>
       </PersonForm>
       <h2>Numbers</h2>
-      <Persons persons={persons} />
+      <Persons persons={filteredPersons} />
     </div>
   )
 }
