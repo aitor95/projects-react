@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Persons } from './components/Persons'
 import Filter from "./components/Filter"
 import PersonForm from './components/PersonForm'
@@ -35,15 +35,20 @@ const App = () => {
     if (existsName) {
       alert(`${newName} is already added to the PhoneBook`)
     } else {
-      const noteToAdd = {
+
+      const newPerson = {
         name: newName,
-        phone: newPhone
+        number: newPhone
       }
-      setPersons([...persons, noteToAdd])
+      setPersons([...persons, newPerson])
       setNewName("")
       setnewPhone("")
     }
   }
+
+  useEffect(() => {
+    setFilteredPersons(persons)
+  }, [persons])
 
   return (
     <div>
@@ -55,7 +60,7 @@ const App = () => {
         newPhone={newPhone}
         handleChange={handleChange}
         handleChangePhone={handleChangePhone}
-        onSubmit={addNote}>
+        addNote={addNote}>
       </PersonForm>
       <h2>Numbers</h2>
       <Persons persons={filteredPersons} />
