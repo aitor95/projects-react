@@ -9,7 +9,7 @@ En este repositorio iré subiendo los proyectos que voy realizando a medida que 
 | Número | Proyecto | Código | 
 | --- | --- | --- |
 | `00` | 00-hola-mundo | [Ver](00-hola-mundo)
-| `01` | 01-Unicafe-step1 | [Ver](01-Unicafe-step1)
+| `01` | 01-Unicafe-step1 | [Ver](https://github.com/aitor95/projects-react/tree/main/01-Unicafe)
 | `02` | 02-Anecdotes | [Ver](02-Anecdotes)
 | `03` | 03-Course-information | [Ver](03-Course-information)
 | `04` | 04-ToDoApp | [Ver](04-ToDoApp)
