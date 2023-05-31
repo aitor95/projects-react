@@ -16,17 +16,17 @@ const App = () => {
 
   useEffect(() => {
     // Using fetch from Javascript
-    // fetch('http://localhost:3000/persons')
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     setpersons(json)
-    //   })
+    fetch(SERVER_ROUTE)
+      .then(response => response.json())
+      .then(json => {
+        setPersons(json)
+      })
 
     // Using Axios to fetch the data
-    axios.get(SERVER_ROUTE)
-      .then(json => {
-        setPersons(json.data)
-      })
+    // axios.get(SERVER_ROUTE)
+    //   .then(json => {
+    //     setPersons(json.data)
+    //   })
   }, [])
 
 
