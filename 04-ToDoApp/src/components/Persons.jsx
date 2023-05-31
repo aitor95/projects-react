@@ -1,11 +1,18 @@
 import React from 'react'
 
-export const Persons = ({ persons }) => {
+export const Persons = ({ persons, showAll }) => {
     return (
         <>
             {
-                persons.map(person =>
-                    <p key={person.name}>{person.name} {person.number} </p>)
+                showAll ?
+                    persons.map(person =>
+                        <p key={person.id}>{person.name} {person.number} </p>)
+
+                    : persons
+                        .filter(person => person.important == true)
+                        .map(person =>
+                            <p key={person.id}>{person.name} {person.number} </p>)
+
             }
         </>
     )

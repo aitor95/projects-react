@@ -1,20 +1,34 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Persons } from './components/Persons'
 import Filter from "./components/Filter"
 import PersonForm from './components/PersonForm'
 
 const App = () => {
-  const initialPersons = [
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ]
 
-  const [persons, setPersons] = useState(initialPersons)
+  const SERVER_ROUTE = 'http://localhost:3000/persons'
+
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newPhone, setnewPhone] = useState('')
   const [filteredPersons, setFilteredPersons] = useState(persons)
+  const [showAll, setShowAll] = useState(false)
+
+  useEffect(() => {
+    // Using fetch from Javascript
+    // fetch('http://localhost:3000/persons')
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     setpersons(json)
+    //   })
+
+    // Using Axios to fetch the data
+    axios.get(SERVER_ROUTE)
+      .then(json => {
+        setPersons(json.data)
+      })
+  }, [])
+
 
   const handleChange = (event) => {
     setNewName(event.target.value)
@@ -29,18 +43,31 @@ const App = () => {
     setFilteredPersons(personsFiltered)
   }
 
-  const addNote = () => {
+  const handleShowAll = () => {
+    console.log(showAll)
+    setShowAll(!showAll)
+  }
+
+  const addNote = (event) => {
     const existsName = persons.some(person => person.name === newName);
 
     if (existsName) {
       alert(`${newName} is already added to the PhoneBook`)
     } else {
+      event.preventDefault()
 
       const newPerson = {
         name: newName,
-        number: newPhone
+        number: newPhone,
+        important: Math.random() < 0.5
       }
-      setPersons([...persons, newPerson])
+
+      // POST USING AXIOS
+      axios
+        .post(SERVER_ROUTE, newPerson)
+        .then(response => {
+          setFilteredPersons([...filteredPersons, response.data])
+        })
       setNewName("")
       setnewPhone("")
     }
@@ -63,7 +90,13 @@ const App = () => {
         addNote={addNote}>
       </PersonForm>
       <h2>Numbers</h2>
-      <Persons persons={filteredPersons} />
+      <button onClick={handleShowAll}>
+        {showAll ? "Show important" : "Show All"}
+      </button>
+      <Persons
+        persons={filteredPersons}
+        showAll={showAll}
+      />
     </div>
   )
 }
