@@ -8,9 +8,9 @@ En este repositorio iré subiendo los proyectos que voy realizando a medida que 
 ## Proyectos de React con código
 | Número | Proyecto | Código | 
 | --- | --- | --- |
-| `00` | 00-hola-mundo | [Ver](00-hola-mundo)
+| `00` | 00-hola-mundo | [Ver]([00-hola-mundo](https://github.com/aitor95/projects-react/tree/main/00-hola-mundo)
 | `01` | 01-Unicafe-step1 | [Ver](https://github.com/aitor95/projects-react/tree/main/01-Unicafe)
-| `02` | 02-Anecdotes | [Ver](02-Anecdotes)
-| `03` | 03-Course-information | [Ver](03-Course-information)
-| `04` | 04-ToDoApp | [Ver](04-ToDoApp)
-| `05` | 05-ThePhoneBook | [Ver](05-ThePhoneBook)
+| `02` | 02-Anecdotes | [Ver](https://github.com/aitor95/projects-react/tree/main/02-Anecdotes)
+| `03` | 03-Course-information | [Ver](https://github.com/aitor95/projects-react/tree/main/03-Course-information)
+| `04` | 04-ToDoApp | [Ver](https://github.com/aitor95/projects-react/tree/main/04-ToDoApp)
+| `05` | 05-ThePhoneBook | [Ver](https://github.com/aitor95/projects-react/tree/main/05-ThePhoneBook)
