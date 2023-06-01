@@ -14,18 +14,13 @@ const App = () => {
   const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
-    getAllUsers().then(data => {
-      setPersons(data)
-    })
+    getAllUsers().then(data => setPersons(data))
   }, [])
 
 
-  const handleChange = (event) => {
-    setNewName(event.target.value)
-  }
-  const handleChangePhone = (event) => {
-    setnewPhone(event.target.value)
-  }
+  const handleChange = (event) => setNewName(event.target.value)
+  const handleChangePhone = (event) => setnewPhone(event.target.value)
+
 
   const handleSearch = (event) => {
     const personToSearch = event.target.value
