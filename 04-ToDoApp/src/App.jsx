@@ -14,10 +14,9 @@ const App = () => {
   const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
-    getAllUsers()
-      .then(data => {
-        setPersons(data)
-      })
+    getAllUsers().then(data => {
+      setPersons(data)
+    })
   }, [])
 
 
@@ -52,10 +51,9 @@ const App = () => {
         important: Math.random() < 0.5
       }
 
-      addUser(newPerson)
-        .then(data => {
-          setFilteredPersons([...filteredPersons, data])
-        })
+      addUser(newPerson).then(data => {
+        setFilteredPersons([...filteredPersons, data])
+      })
 
       setNewName("")
       setnewPhone("")
