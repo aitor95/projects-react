@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Persons } from './components/Persons'
 import Filter from "./components/Filter"
 import PersonForm from './components/PersonForm'
+import getAllUsers from './services/Notes/getAllUsers'
+import addUser from './services/Notes/addUser'
 
 const App = () => {
-
-  const SERVER_ROUTE = 'http://localhost:3000/persons'
 
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
@@ -15,18 +14,10 @@ const App = () => {
   const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
-    // Using fetch from Javascript
-    fetch(SERVER_ROUTE)
-      .then(response => response.json())
-      .then(json => {
-        setPersons(json)
+    getAllUsers()
+      .then(data => {
+        setPersons(data)
       })
-
-    // Using Axios to fetch the data
-    // axios.get(SERVER_ROUTE)
-    //   .then(json => {
-    //     setPersons(json.data)
-    //   })
   }, [])
 
 
@@ -44,7 +35,6 @@ const App = () => {
   }
 
   const handleShowAll = () => {
-    console.log(showAll)
     setShowAll(!showAll)
   }
 
@@ -62,12 +52,11 @@ const App = () => {
         important: Math.random() < 0.5
       }
 
-      // POST USING AXIOS
-      axios
-        .post(SERVER_ROUTE, newPerson)
-        .then(response => {
-          setFilteredPersons([...filteredPersons, response.data])
+      addUser(newPerson)
+        .then(data => {
+          setFilteredPersons([...filteredPersons, data])
         })
+
       setNewName("")
       setnewPhone("")
     }
