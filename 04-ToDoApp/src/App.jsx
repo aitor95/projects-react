@@ -33,9 +33,7 @@ const App = () => {
     setFilteredPersons(personsFiltered)
   }
 
-  const handleShowAll = () => {
-    setShowAll(!showAll)
-  }
+  const handleShowAll = () => setShowAll(!showAll)
 
   const addNote = (event) => {
     const existsName = persons.some(person => person.name === newName);
