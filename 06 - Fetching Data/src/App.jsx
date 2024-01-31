@@ -1,0 +1,48 @@
+import { useState } from "react";
+import Note from "./components/Note";
+import { useEffect } from "react";
+
+const App = () => {
+  const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState("");
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => setNotes(json));
+  }, []);
+
+  const handleChange = (event) => {
+    setNewNote(event.target.value);
+  };
+
+  const addNote = (event) => {
+    event.preventDefault();
+
+    const newNoteToAdd = {
+      id: notes.length + 1,
+      title: newNote,
+      body: newNote,
+    };
+    setNotes((prevNotes) => [...prevNotes, newNoteToAdd]);
+    setNewNote("");
+  };
+
+  return (
+    <div>
+      <h1>Notes</h1>
+
+      <ol>
+        {notes.map((note) => (
+          <Note key={note.id} {...note} />
+        ))}
+      </ol>
+      <form onSubmit={addNote}>
+        <input onChange={handleChange} value={newNote} />
+        <button type="submit">add note</button>
+      </form>
+    </div>
+  );
+};
+
+export default App;
