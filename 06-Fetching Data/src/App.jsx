@@ -1,15 +1,19 @@
 import { useState } from "react";
 import Note from "./components/Note";
 import { useEffect } from "react";
+import axios from "axios";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
-
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((json) => setNotes(json));
+    // axios.get("https://jsonplaceholder.typicode.com/posts")
+    // .then(response => {
+    //   const {data} = response
+    //   setNotes(data)})
   }, []);
 
   const handleChange = (event) => {
