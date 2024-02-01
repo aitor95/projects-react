@@ -7,7 +7,7 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("http://localhost:3001/persons")
       .then((response) => response.json())
       .then((json) => setNotes(json));
     // axios.get("https://jsonplaceholder.typicode.com/posts")
@@ -25,8 +25,8 @@ const App = () => {
 
     const newNoteToAdd = {
       id: notes.length + 1,
-      title: newNote,
-      body: newNote,
+      name: newNote,
+      number: newNote,
     };
     setNotes((prevNotes) => [...prevNotes, newNoteToAdd]);
     setNewNote("");

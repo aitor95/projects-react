@@ -1,10 +1,10 @@
 import React from "react";
 
-const Note = ({ title, body }) => {
+const Note = ({ name, number }) => {
   return (
     <div>
-      <li>{title}</li>
-      <p>{body}</p>
+      <li>{name}</li>
+      <p>{number}</p>
     </div>
   );
 };
