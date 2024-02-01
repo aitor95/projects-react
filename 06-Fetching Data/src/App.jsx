@@ -1,34 +1,31 @@
 import { useState } from "react";
 import Note from "./components/Note";
 import { useEffect } from "react";
-import axios from "axios";
+import { addNote } from "./services/notes/addNote";
+import { getAllNotes } from "./services/notes/getAllNotes";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
+
   useEffect(() => {
-    fetch("http://localhost:3001/persons")
-      .then((response) => response.json())
-      .then((json) => setNotes(json));
-    // axios.get("https://jsonplaceholder.typicode.com/posts")
-    // .then(response => {
-    //   const {data} = response
-    //   setNotes(data)})
+    getAllNotes().then(notes => setNotes(notes))
   }, []);
 
   const handleChange = (event) => {
     setNewNote(event.target.value);
   };
 
-  const addNote = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const newNoteToAdd = {
-      id: notes.length + 1,
-      name: newNote,
-      number: newNote,
+      userId: 1,
+      title: newNote,
+      body: newNote,
     };
-    setNotes((prevNotes) => [...prevNotes, newNoteToAdd]);
+
+    addNote(newNoteToAdd).then((note) => setNotes((prevNotes) => [...prevNotes, note]));
     setNewNote("");
   };
 
@@ -41,7 +38,7 @@ const App = () => {
           <Note key={note.id} {...note} />
         ))}
       </ol>
-      <form onSubmit={addNote}>
+      <form onSubmit={handleSubmit}>
         <input onChange={handleChange} value={newNote} />
         <button type="submit">add note</button>
       </form>
