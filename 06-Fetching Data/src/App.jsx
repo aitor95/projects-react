@@ -9,7 +9,7 @@ const App = () => {
   const [newNote, setNewNote] = useState("");
 
   useEffect(() => {
-    getAllNotes().then(notes => setNotes(notes))
+    getAllNotes().then(notes => setNotes((prevNotes => [...prevNotes, notes])))
   }, []);
 
   const handleChange = (event) => {
