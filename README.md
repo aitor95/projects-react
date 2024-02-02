@@ -14,5 +14,6 @@ En este repositorio iré subiendo los proyectos que voy realizando a medida que 
 | `03` | 03-Course-information | [Ver](https://github.com/aitor95/projects-react/tree/main/03-Course-information)
 | `04` | 04-ToDoApp | [Ver](https://github.com/aitor95/projects-react/tree/main/04-ToDoApp)
 | `05` | 05-ThePhoneBook | [Ver](https://github.com/aitor95/projects-react/tree/main/05-ThePhoneBook)
-| `06` | 06 - Fetching Data | [Ver](https://github.com/aitor95/projects-react/tree/main/06-Fetching%20Data)
+| `06` | 06-Fetching Data | [Ver](https://github.com/aitor95/projects-react/tree/main/06-Fetching%20Data)
+| `07` | 07-Part3 | [Ver](https://github.com/aitor95/projects-react/tree/main/07-Part3)
 
