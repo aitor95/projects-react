@@ -7,11 +7,14 @@ import { getAllNotes } from "./services/notes/getAllNotes";
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
-
+  const [important, setImportant] = useState(true)
   useEffect(() => {
-    getAllNotes().then(notes => setNotes((prevNotes => [...prevNotes, notes])))
+    getAllNotes().then(notes => setNotes(notes))
   }, []);
 
+  const handleClick = () => {
+    setImportant(prev => !prev)
+  }
   const handleChange = (event) => {
     setNewNote(event.target.value);
   };
@@ -21,8 +24,9 @@ const App = () => {
 
     const newNoteToAdd = {
       userId: 1,
-      title: newNote,
-      body: newNote,
+      content: newNote,
+      important: Math.random() > 0.5
+      // body: newNote,
     };
 
     addNote(newNoteToAdd).then((note) => setNotes((prevNotes) => [...prevNotes, note]));
@@ -32,11 +36,21 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
-
+      <button onClick={handleClick}>{important ? 'Show All' : 'Show only important'}</button>
+      
       <ol>
-        {notes.map((note) => (
-          <Note key={note.id} {...note} />
-        ))}
+        {
+        important ?
+        notes
+        .filter(note => note.important === important)
+        .map((note) => (
+          <Note key={note.id} {...note} notes={notes} setNotes={setNotes}/>
+        )) 
+        : notes
+        .map((note) => (
+          <Note key={note.id} {...note} notes={notes} setNotes={setNotes}/>
+        ))
+        }
       </ol>
       <form onSubmit={handleSubmit}>
         <input onChange={handleChange} value={newNote} />
