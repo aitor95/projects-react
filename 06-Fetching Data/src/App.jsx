@@ -23,10 +23,8 @@ const App = () => {
     event.preventDefault();
 
     const newNoteToAdd = {
-      userId: 1,
       content: newNote,
       important: Math.random() > 0.5
-      // body: newNote,
     };
 
     addNote(newNoteToAdd).then((note) => setNotes((prevNotes) => [...prevNotes, note]));
@@ -37,19 +35,20 @@ const App = () => {
     <div>
       <h1>Notes</h1>
       <button onClick={handleClick}>{important ? 'Show All' : 'Show only important'}</button>
-      
+
       <ol>
         {
-        important ?
-        notes
-        .filter(note => note.important === important)
-        .map((note) => (
-          <Note key={note.id} {...note} notes={notes} setNotes={setNotes}/>
-        )) 
-        : notes
-        .map((note) => (
-          <Note key={note.id} {...note} notes={notes} setNotes={setNotes}/>
-        ))
+          important ?
+            notes
+              .filter(note => note.important === important)
+              .map((note) => (
+                <Note key={note.id} {...note} notes={notes} setNotes={setNotes} />
+              ))
+            :
+            notes
+              .map((note) => (
+                <Note key={note.id} {...note} notes={notes} setNotes={setNotes} />
+              ))
         }
       </ol>
       <form onSubmit={handleSubmit}>
